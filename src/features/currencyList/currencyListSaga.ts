@@ -3,7 +3,7 @@ import { CURRENCY_LIST_REQUEST } from './currencyListTypes';
 import { getCurrencyListSuccess, getCurrencyListFailed } from './currencyListActions';
 import { currencyListAPI } from '../../api/currencyList';
 
-function* getAllMentors(): any {
+function* getCurrencyList(): any {
   try {
     const response = yield call(currencyListAPI.getCurrencyList);
     yield put(getCurrencyListSuccess(response));
@@ -12,8 +12,8 @@ function* getAllMentors(): any {
   }
 }
 
-function* mentorsSaga(): Generator {
-  yield takeLatest(CURRENCY_LIST_REQUEST, getAllMentors);
+function* currencyListSaga(): Generator {
+  yield takeLatest(CURRENCY_LIST_REQUEST, getCurrencyList);
 }
 
-export default mentorsSaga;
+export default currencyListSaga;

@@ -1,9 +1,13 @@
 import { Reducer } from 'redux';
-// import { MENTORS_REQUEST, MENTORS_SUCCESS, MENTORS_FAILED, MentorsTypes } from './mentorsTypes';
 import { LoadingStatus, ErrorData } from '../_common/types';
 import { errorData } from '../_common/initialValues';
-import { CurrencyListTypes } from './currencyListTypes';
-import { Currency } from '../ currency/currencyTypes';
+import {
+  CurrencyListTypes,
+  CURRENCY_LIST_FAILED,
+  CURRENCY_LIST_REQUEST,
+  CURRENCY_LIST_SUCCESS
+} from './currencyListTypes';
+import { Currency } from '../currency/currencyTypes';
 
 export type CurrencyListState = {
   status: LoadingStatus;
@@ -22,23 +26,23 @@ const currencyListReducer: Reducer<CurrencyListState, CurrencyListTypes> = (
   action
 ) => {
   switch (action.type) {
-    // case MENTORS_REQUEST:
-    //   return {
-    //     ...state,
-    //     status: 'loading'
-    //   };
-    // case MENTORS_SUCCESS:
-    //   return {
-    //     ...state,
-    //     data: action.payload.mentors,
-    //     status: 'success',
-    //   };
-    // case MENTORS_FAILED:
-    //   return {
-    //     ...state,
-    //     error: action.error,
-    //     status: 'failed',
-    //   };
+    case CURRENCY_LIST_REQUEST:
+      return {
+        ...state,
+        status: 'loading'
+      };
+    case CURRENCY_LIST_SUCCESS:
+      return {
+        ...state,
+        data: action.payload.currencyList,
+        status: 'success'
+      };
+    case CURRENCY_LIST_FAILED:
+      return {
+        ...state,
+        error: action.error,
+        status: 'failed'
+      };
     default:
       return state;
   }

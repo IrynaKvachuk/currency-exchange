@@ -1,5 +1,5 @@
 import { ErrorData } from '../_common/types';
-import { Currency } from '../ currency/currencyTypes';
+import { Currency } from '../currency/currencyTypes';
 
 export const CURRENCY_LIST_REQUEST = 'CURRENCY_LIST/REQUEST';
 export const CURRENCY_LIST_SUCCESS = 'CURRENCY_LIST/SUCCESS';

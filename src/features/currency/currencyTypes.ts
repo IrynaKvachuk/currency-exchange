@@ -1,6 +1,6 @@
 export type Currency = {
   ccy: string;
   base_ccy: string;
-  buy: number;
-  sale: number;
+  buy: number | string;
+  sale: number | string;
 };

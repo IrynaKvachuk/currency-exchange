@@ -4,6 +4,7 @@ import {
   CURRENCY_LIST_REQUEST,
   CURRENCY_LIST_SUCCESS,
   CURRENCY_LIST_FAILED,
+  SET_FOCUSED_CELL,
   CurrencyListTypes
 } from './currencyListTypes';
 
@@ -19,4 +20,9 @@ export const getCurrencyListSuccess = (input: Array<Currency>): CurrencyListType
 export const getCurrencyListFailed = (input: ErrorData): CurrencyListTypes => ({
   type: CURRENCY_LIST_FAILED,
   error: input
+});
+
+export const setFocusedCell = (input: string): CurrencyListTypes => ({
+  type: SET_FOCUSED_CELL,
+  payload: { focusedCell: input }
 });

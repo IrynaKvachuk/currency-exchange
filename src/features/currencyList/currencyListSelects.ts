@@ -12,3 +12,6 @@ export const selectCurrencyListStatus = (state: RootStateT): LoadingStatus =>
 
 export const selectCurrencyListErrorStatus = (state: RootStateT): number | null =>
   state.currencyList.error.status;
+
+export const selectCurrencyListFocusedCell = (state: RootStateT): string =>
+  state.currencyList.focusedCell;

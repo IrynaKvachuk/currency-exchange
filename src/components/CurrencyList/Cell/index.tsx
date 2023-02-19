@@ -1,13 +1,17 @@
 import Cell from './Cell';
-import { CellProps } from './types';
 
-const CellWrapper = (props: CellProps) => {
-  const { value } = props;
+type Props = {
+  value: string;
+  id: string;
+};
+
+const CellWrapper = (props: Props) => {
+  const { value, id } = props;
   let cellValue = value;
 
   return (
-    <td data-editable="true">
-      <Cell value={cellValue} onChange={(newValue: string) => (cellValue = newValue)} />
+    <td className="cur-value-col text-center" data-editable="true">
+      <Cell value={cellValue} id={id} onChange={(newValue: string) => (cellValue = newValue)} />
     </td>
   );
 };

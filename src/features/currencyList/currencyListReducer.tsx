@@ -5,7 +5,8 @@ import {
   CurrencyListTypes,
   CURRENCY_LIST_FAILED,
   CURRENCY_LIST_REQUEST,
-  CURRENCY_LIST_SUCCESS
+  CURRENCY_LIST_SUCCESS,
+  SET_FOCUSED_CELL
 } from './currencyListTypes';
 import { Currency } from '../currency/currencyTypes';
 
@@ -13,12 +14,14 @@ export type CurrencyListState = {
   status: LoadingStatus;
   error: ErrorData;
   data: Array<Currency>;
+  focusedCell: string;
 };
 
 const initialState: CurrencyListState = {
   status: 'idle',
   error: errorData,
-  data: []
+  data: [],
+  focusedCell: ''
 };
 
 const currencyListReducer: Reducer<CurrencyListState, CurrencyListTypes> = (
@@ -42,6 +45,11 @@ const currencyListReducer: Reducer<CurrencyListState, CurrencyListTypes> = (
         ...state,
         error: action.error,
         status: 'failed'
+      };
+    case SET_FOCUSED_CELL:
+      return {
+        ...state,
+        focusedCell: action.payload.focusedCell
       };
     default:
       return state;

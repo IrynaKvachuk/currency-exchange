@@ -1,9 +1,5 @@
 export type CellMode = 'edit' | 'read';
 
-export type CellProps = {
-  value: string;
-};
-
 export type CheckAllowedDiff = {
   inputEl: HTMLInputElement;
   newValue: number;
@@ -17,6 +13,7 @@ export type InputChange = {
 };
 
 export type EditClick = {
+  id: string;
   setMode: (newMode: CellMode) => void;
 };
 

@@ -1,9 +1,11 @@
+import store from '../../../store';
+import { setFocusedCell } from '../../../features/currencyList/currencyListActions';
 import { CheckAllowedDiff, CloseClick, EditClick, InputChange, SaveClick } from './types';
 
 const checkAllowedDiff = (props: CheckAllowedDiff) => {
   const { inputEl, newValue, initValue } = props;
   const saveBtn = inputEl
-    .closest('.exchange-cell-group')
+    .closest('.exchange_cell-group')
     ?.querySelector('.btn-outline-primary') as HTMLButtonElement;
 
   if (!saveBtn) return;
@@ -28,7 +30,9 @@ export const inputChange = (props: InputChange) => {
 };
 
 export const editClick = (props: EditClick) => {
-  const { setMode } = props;
+  const { id, setMode } = props;
+
+  store.dispatch(setFocusedCell(id));
   setMode('edit');
 
   return;

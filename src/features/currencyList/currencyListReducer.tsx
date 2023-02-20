@@ -6,7 +6,9 @@ import {
   CURRENCY_LIST_FAILED,
   CURRENCY_LIST_REQUEST,
   CURRENCY_LIST_SUCCESS,
-  SET_FOCUSED_CELL
+  SET_FOCUSED_CELL,
+  SET_NEW_CURRENCY_VALUE,
+  GetChangedData
 } from './currencyListTypes';
 import { Currency } from '../currency/currencyTypes';
 
@@ -22,6 +24,17 @@ const initialState: CurrencyListState = {
   error: errorData,
   data: [],
   focusedCell: ''
+};
+
+const getChangedData = (props: GetChangedData) => {
+  const { prevData, changedCurrency } = props;
+
+  const data = prevData.map((currency) => {
+    if (changedCurrency.ccy === currency.ccy) return { ...currency, ...changedCurrency };
+    return currency;
+  });
+
+  return data;
 };
 
 const currencyListReducer: Reducer<CurrencyListState, CurrencyListTypes> = (
@@ -50,6 +63,14 @@ const currencyListReducer: Reducer<CurrencyListState, CurrencyListTypes> = (
       return {
         ...state,
         focusedCell: action.payload.focusedCell
+      };
+    case SET_NEW_CURRENCY_VALUE:
+      return {
+        ...state,
+        data: getChangedData({
+          prevData: state.data,
+          changedCurrency: action.payload.changedCurrency
+        })
       };
     default:
       return state;

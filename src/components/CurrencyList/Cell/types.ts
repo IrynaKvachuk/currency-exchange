@@ -14,17 +14,14 @@ export type InputChange = {
 
 export type EditClick = {
   id: string;
-  setMode: (newMode: CellMode) => void;
 };
 
 export type SaveClick = {
   text: string;
-  setMode: (newMode: CellMode) => void;
   onChange?: (newValue: string) => void;
 };
 
 export type CloseClick = {
   initText: string;
-  setMode: (newMode: CellMode) => void;
   setText: (newText: string) => void;
 };

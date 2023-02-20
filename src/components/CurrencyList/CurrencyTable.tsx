@@ -9,12 +9,18 @@ const CurrencyTable: React.FC<Props> = (props: Props) => {
   const { currencyList } = props;
 
   return (
-    <table className="table table-hover">
-      <thead>
+    <table className="exchange_table table table-bordered table-hover table-fixed">
+      <thead className="table-dark">
         <tr>
-          <th scope="col">Currency/Current Date</th>
-          <th scope="col">Buy</th>
-          <th scope="col">Sell</th>
+          <th scope="col" className="cur-name-col text-center">
+            Currency/Current Date
+          </th>
+          <th scope="col" className="cur-value-col text-center">
+            Buy
+          </th>
+          <th scope="col" className="cur-value-col text-center">
+            Sell
+          </th>
         </tr>
       </thead>
       <tbody>
@@ -22,9 +28,11 @@ const CurrencyTable: React.FC<Props> = (props: Props) => {
           const { ccy, buy, sale } = currency;
           return (
             <tr key={ccy}>
-              <th scope="row">{ccy}</th>
-              <CellWrapper value={buy} />
-              <CellWrapper value={sale} />
+              <th scope="row" className="text-center">
+                {ccy}
+              </th>
+              <CellWrapper value={buy} id={ccy + 'ToBuy'} />
+              <CellWrapper value={sale} id={ccy + 'ToSale'} />
             </tr>
           );
         })}

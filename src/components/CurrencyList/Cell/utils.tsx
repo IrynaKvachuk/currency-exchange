@@ -30,25 +30,22 @@ export const inputChange = (props: InputChange) => {
 };
 
 export const editClick = (props: EditClick) => {
-  const { id, setMode } = props;
+  const { id } = props;
 
   store.dispatch(setFocusedCell(id));
-  setMode('edit');
 
   return;
 };
 
 export const saveClick = (props: SaveClick) => {
-  const { text, setMode, onChange } = props;
-  setMode('read');
+  const { text, onChange } = props;
   if (onChange) onChange(text);
 
   return;
 };
 
 export const closeClick = (props: CloseClick) => {
-  const { initText, setMode, setText } = props;
-  setMode('read');
+  const { initText, setText } = props;
   setText(initText);
 
   return;

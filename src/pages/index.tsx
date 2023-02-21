@@ -1,5 +1,5 @@
 import { lazy, Suspense } from 'react';
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, Navigate } from 'react-router-dom';
 import Loader from '../components/icons/Loader';
 
 const Home = lazy(() => import('./Home'));
@@ -11,6 +11,7 @@ const Pages: React.FC = () => {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/404" element={<Fallback />} />
+        <Route path="*" element={<Navigate to="/404" replace />} />
       </Routes>
     </Suspense>
   );

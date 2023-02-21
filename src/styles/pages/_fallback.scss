@@ -1,0 +1,14 @@
+.exchange {
+  &_fallback {
+    text-align: center;
+
+    &-title {
+      font-size: 5rem;
+    }
+
+    &-link {
+      font-size: 2rem;
+      font-weight: bold;
+    }
+  }
+}

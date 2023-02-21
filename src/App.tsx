@@ -6,7 +6,7 @@ import './styles/index.scss';
 
 const App: React.FC = () => {
   return (
-    <main data-testid="main">
+    <main className="app-body" data-testid="app-body">
       <Header />
       <Pages />
       <Footer />

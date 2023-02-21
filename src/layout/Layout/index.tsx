@@ -5,7 +5,7 @@ type Props = {
 };
 
 const Layout = ({ children }: Props): JSX.Element => {
-  return <section className="layout">{children}</section>;
+  return <section className="exchange_layout container-fluid">{children}</section>;
 };
 
 export default Layout;

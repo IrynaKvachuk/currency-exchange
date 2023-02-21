@@ -2,10 +2,15 @@ import React from 'react';
 
 type Props = {
   children: React.ReactNode;
+  classList?: string;
 };
 
-const Container = ({ children }: Props): JSX.Element => {
-  return <section className="exchange-container container">{children}</section>;
+const Container: React.FC<Props> = (props: Props) => {
+  const { children, classList = '' } = props;
+
+  return (
+    <section className={`exchange_container container-fluid ${classList}`}>{children}</section>
+  );
 };
 
 export default Container;

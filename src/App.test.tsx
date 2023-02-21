@@ -14,6 +14,6 @@ test('renders main', async () => {
   );
 
   await waitFor(async () => {
-    expect(screen.getByTestId('main')).toBeInTheDocument();
+    expect(screen.getByTestId('app-body')).toBeInTheDocument();
   });
 });

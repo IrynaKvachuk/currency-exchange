@@ -1,0 +1,12 @@
+.exchange {
+  &_error {
+    display: grid;
+    place-items: center;
+
+    & .error-header {
+      font-size: 3rem;
+      font-weight: bold;
+      text-align: center;
+    }
+  }
+}

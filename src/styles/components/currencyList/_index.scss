@@ -1,0 +1,19 @@
+.currency-list {
+  position: relative;
+
+  &_reload-btn {
+    position: absolute;
+    top: -3rem;
+    right: 0.8rem;
+    font-size: 1.5rem;
+    background-color: transparent;
+    color: $color-font-black;
+    border: 0.2rem solid $color-font-black;
+
+    &:hover {
+      transform: rotate(360deg);
+      background-color: $color-font-black;
+      border-radius: 50%;
+    }
+  }
+}

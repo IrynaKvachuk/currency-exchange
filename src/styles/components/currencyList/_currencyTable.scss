@@ -1,0 +1,17 @@
+.exchange {
+  &_table {
+    max-width: 65rem;
+
+    & .cur-name-col {
+      width: 25rem;
+    }
+
+    & .cur-value-col {
+      width: 20rem;
+    }
+
+    td {
+      cursor: pointer;
+    }
+  }
+}

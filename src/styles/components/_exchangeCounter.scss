@@ -1,0 +1,45 @@
+.exchange {
+  &_counter {
+    display: grid;
+    gap: 2rem;
+    grid-template-columns: 3fr 5rem 3fr;
+    max-width: 200rem;
+
+    & .btn-swap {
+      margin: auto;
+      font-size: 2rem;
+      color: $color-font-light-gray;
+      background-color: $color-font-dark-gray;
+      border: 0.1rem $color-font-black solid;
+
+      &:hover {
+        color: $color-font-white;
+        background-color: $color-font-black;
+      }
+    }
+
+    & .floating-input {
+      font-size: 1.5rem;
+      height: 5rem;
+    }
+
+    & .input-drop-down {
+      margin-bottom: 1rem;
+
+      & .form-select {
+        height: 100%;
+      }
+    }
+  }
+}
+
+@media (max-width: 767.98px) {
+  .exchange {
+    &_counter {
+      width: 80vw;
+      margin: 0 auto;
+      grid-template-columns: 1fr;
+      justify-content: center;
+    }
+  }
+}

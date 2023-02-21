@@ -9,5 +9,11 @@
 @import './layout/footer';
 
 // COMPONENTS
-@import './components/currencyList/cell';
+@import './components/errorMessage';
+@import './components/currencyList/index';
+@import './components/currencyList/cellEdit';
 @import './components/currencyList/currencyTable';
+@import './components/exchangeCounter';
+
+// PAGES
+@import './pages/home';

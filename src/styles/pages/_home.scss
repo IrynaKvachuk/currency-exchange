@@ -1,0 +1,17 @@
+.exchange {
+  &_home-page {
+    height: 100%;
+    display: grid;
+    place-items: center;
+    gap: 2rem;
+
+    & section:nth-child(1) {
+      align-self: flex-end;
+    }
+
+    & section:nth-child(2) {
+      align-self: flex-start;
+      
+    }
+  }
+}

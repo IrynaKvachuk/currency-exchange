@@ -1,6 +1,14 @@
+export type ExchangeType = 'buy' | 'sale';
+
 export type Currency = {
   ccy: string;
   base_ccy: string;
-  buy: number | string;
-  sale: number | string;
+  buy: string;
+  sale: string;
+};
+
+export type ChangedCurrency = {
+  ccy: string;
+  buy?: string;
+  sale?: string;
 };

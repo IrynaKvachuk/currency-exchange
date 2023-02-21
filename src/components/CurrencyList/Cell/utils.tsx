@@ -1,11 +1,13 @@
 import store from '../../../store';
 import {
+  clearEditState,
+  setEditError,
   setFocusedCell,
   setNewCurrencyValue
 } from '../../../features/currencyList/currencyListActions';
 import {
-  CheckAllowedDiff,
-  CheckAllowedSymbols,
+  CheckAllowedValue,
+  CheckAllowedType,
   CloseClick,
   DisableSaveBtn,
   EditClick,
@@ -25,21 +27,23 @@ const disableSaveBtn = (props: DisableSaveBtn) => {
   return;
 };
 
-const checkAllowedDiff = (props: CheckAllowedDiff) => {
+const checkAllowedValue = (props: CheckAllowedValue) => {
   const { newValue, initValue } = props;
 
   const maxDiff = newValue / 10;
   const diff = Math.abs(newValue - Number(initValue));
   const notAllowedRange = diff > maxDiff;
 
+  store.dispatch(setEditError({ editErrorType: 'editValueError', value: notAllowedRange }));
   return notAllowedRange;
 };
 
-const checkAllowedSymbols = (props: CheckAllowedSymbols) => {
+const checkAllowedType = (props: CheckAllowedType) => {
   const { inputEl } = props;
-  const notAllowedSymbols = !inputEl.checkValidity();
+  const notAllowedType = !inputEl.checkValidity();
 
-  return notAllowedSymbols;
+  store.dispatch(setEditError({ editErrorType: 'editTypeError', value: notAllowedType }));
+  return notAllowedType;
 };
 
 export const inputChange = (props: InputChange) => {
@@ -48,12 +52,12 @@ export const inputChange = (props: InputChange) => {
   if (!event.target) return;
   const inputEl = event.target as HTMLInputElement;
   const newValue = inputEl.value;
-  const notAllowedDiff = checkAllowedDiff({
+  const notAllowedDiff = checkAllowedValue({
     inputEl,
     newValue: Number(newValue),
     initValue: Number(initValue)
   });
-  const notAllowedSymbols = checkAllowedSymbols({ inputEl });
+  const notAllowedSymbols = checkAllowedType({ inputEl });
 
   setText(newValue);
   disableSaveBtn({ inputEl, disabled: notAllowedDiff || notAllowedSymbols });
@@ -62,8 +66,9 @@ export const inputChange = (props: InputChange) => {
 };
 
 export const editClick = (props: EditClick) => {
-  const { id } = props;
+  const { id, initText, setText } = props;
 
+  setText(initText);
   store.dispatch(setFocusedCell(id));
 
   return;
@@ -74,7 +79,7 @@ export const saveClick = (props: SaveClick) => {
 
   if (onChange) onChange(text);
   store.dispatch(setNewCurrencyValue({ ccy, [exchangeType]: text }));
-  store.dispatch(setFocusedCell(''));
+  store.dispatch(clearEditState());
 
   return;
 };
@@ -83,7 +88,7 @@ export const closeClick = (props: CloseClick) => {
   const { initText, setText } = props;
 
   setText(initText);
-  store.dispatch(setFocusedCell(''));
+  store.dispatch(clearEditState());
 
   return;
 };

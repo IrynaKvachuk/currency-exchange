@@ -6,7 +6,10 @@ import {
   CURRENCY_LIST_FAILED,
   SET_FOCUSED_CELL,
   SET_NEW_CURRENCY_VALUE,
-  CurrencyListTypes
+  CurrencyListTypes,
+  EditErrorData,
+  SET_EDIT_ERROR,
+  CLEAR_EDIT_STATE
 } from './currencyListTypes';
 
 export const getCurrencyListRequest = (): CurrencyListTypes => ({
@@ -31,4 +34,13 @@ export const setFocusedCell = (input: string): CurrencyListTypes => ({
 export const setNewCurrencyValue = (input: ChangedCurrency): CurrencyListTypes => ({
   type: SET_NEW_CURRENCY_VALUE,
   payload: { changedCurrency: input }
+});
+
+export const setEditError = (input: EditErrorData): CurrencyListTypes => ({
+  type: SET_EDIT_ERROR,
+  payload: { editErrorData: input }
+});
+
+export const clearEditState = (): CurrencyListTypes => ({
+  type: CLEAR_EDIT_STATE
 });

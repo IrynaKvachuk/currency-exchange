@@ -7,13 +7,13 @@ export type DisableSaveBtn = {
   disabled: boolean;
 };
 
-export type CheckAllowedDiff = {
+export type CheckAllowedValue = {
   inputEl: HTMLInputElement;
   newValue: number;
   initValue: number;
 };
 
-export type CheckAllowedSymbols = {
+export type CheckAllowedType = {
   inputEl: HTMLInputElement;
 };
 
@@ -25,6 +25,8 @@ export type InputChange = {
 
 export type EditClick = {
   id: string;
+  initText: string;
+  setText: (newText: string) => void;
 };
 
 export type SaveClick = {

@@ -15,3 +15,8 @@ export const selectCurrencyListErrorStatus = (state: RootStateT): ErrorData =>
 
 export const selectCurrencyListFocusedCell = (state: RootStateT): string =>
   state.currencyList.focusedCell;
+
+export const selectEditTypeError = (state: RootStateT): boolean => state.currencyList.editTypeError;
+
+export const selectEditValueError = (state: RootStateT): boolean =>
+  state.currencyList.editValueError;

@@ -27,7 +27,11 @@ const Cell: React.FC<Props> = (props: Props) => {
   if (focusedCell === id)
     return CellEdit({ initText: value, text, ccy, exchangeType, setText, onChange });
   if (focusedCell !== id)
-    return <div onClick={() => editClick({ id })}>{text.substring(0, text.indexOf('.') + 3)}</div>;
+    return (
+      <div onClick={() => editClick({ id, initText: value, setText })}>
+        {text.substring(0, text.indexOf('.') + 3)}
+      </div>
+    );
   return null;
 };
 

@@ -8,7 +8,9 @@ import {
   CURRENCY_LIST_SUCCESS,
   SET_FOCUSED_CELL,
   SET_NEW_CURRENCY_VALUE,
-  GetChangedData
+  GetChangedData,
+  SET_EDIT_ERROR,
+  CLEAR_EDIT_STATE
 } from './currencyListTypes';
 import { Currency } from '../currency/currencyTypes';
 
@@ -17,13 +19,17 @@ export type CurrencyListState = {
   error: ErrorData;
   data: Array<Currency>;
   focusedCell: string;
+  editTypeError: boolean;
+  editValueError: boolean;
 };
 
 const initialState: CurrencyListState = {
   status: 'idle',
   error: errorData,
   data: [],
-  focusedCell: ''
+  focusedCell: '',
+  editTypeError: false,
+  editValueError: false
 };
 
 const getChangedData = (props: GetChangedData) => {
@@ -62,7 +68,9 @@ const currencyListReducer: Reducer<CurrencyListState, CurrencyListTypes> = (
     case SET_FOCUSED_CELL:
       return {
         ...state,
-        focusedCell: action.payload.focusedCell
+        focusedCell: action.payload.focusedCell,
+        editTypeError: false,
+        editValueError: false
       };
     case SET_NEW_CURRENCY_VALUE:
       return {
@@ -72,6 +80,16 @@ const currencyListReducer: Reducer<CurrencyListState, CurrencyListTypes> = (
           changedCurrency: action.payload.changedCurrency
         })
       };
+    case SET_EDIT_ERROR: {
+      const editErrorType = action.payload.editErrorData.editErrorType;
+      const value = action.payload.editErrorData.value;
+      return {
+        ...state,
+        [editErrorType]: value
+      };
+    }
+    case CLEAR_EDIT_STATE:
+      return { ...state, focusedCell: '', editTypeError: false, editValueError: false };
     default:
       return state;
   }

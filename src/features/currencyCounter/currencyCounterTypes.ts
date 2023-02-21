@@ -1,5 +1,6 @@
-export const SET_COUNTER_CURRENCY = 'SET_COUNTER_CURRENCY';
-export const SET_COUNTER_CURRENCY_VALUE = 'SET_COUNTER_CURRENCY_VALUE';
+export const SET_COUNTER_CURRENCY = 'COUNTER/SET_COUNTER_CURRENCY';
+export const SET_COUNTER_CURRENCY_VALUE = 'COUNTER/SET_COUNTER_CURRENCY_VALUE';
+export const SWAP_CURRENCIES = 'COUNTER/SWAP_CURRENCIES';
 
 export type CounterInputType = 'currencyToChange' | 'currencyToGet';
 
@@ -29,5 +30,8 @@ interface SetCounterCurrencyValue {
   type: typeof SET_COUNTER_CURRENCY_VALUE;
   payload: { currencyValueToChange: CurrencyValueToChange };
 }
+interface SwapCurrencies {
+  type: typeof SWAP_CURRENCIES;
+}
 
-export type CurrencyCounterTypes = SetCounterCurrency | SetCounterCurrencyValue;
+export type CurrencyCounterTypes = SetCounterCurrency | SetCounterCurrencyValue | SwapCurrencies;

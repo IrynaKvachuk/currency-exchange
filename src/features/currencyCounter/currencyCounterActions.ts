@@ -3,7 +3,8 @@ import {
   SET_COUNTER_CURRENCY,
   SET_COUNTER_CURRENCY_VALUE,
   CurrencyToChange,
-  CurrencyValueToChange
+  CurrencyValueToChange,
+  SWAP_CURRENCIES
 } from './currencyCounterTypes';
 
 export const setCounterCurrency = (input: CurrencyToChange): CurrencyCounterTypes => ({
@@ -14,4 +15,8 @@ export const setCounterCurrency = (input: CurrencyToChange): CurrencyCounterType
 export const setCounterCurrencyValue = (input: CurrencyValueToChange): CurrencyCounterTypes => ({
   type: SET_COUNTER_CURRENCY_VALUE,
   payload: { currencyValueToChange: input }
+});
+
+export const swapCurrencies = (): CurrencyCounterTypes => ({
+  type: SWAP_CURRENCIES
 });

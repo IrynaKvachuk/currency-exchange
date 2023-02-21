@@ -9,6 +9,7 @@ import {
 import { selectCurrencyList } from '../../features/currencyList/currencyListSelects';
 import Container from '../../layout/Container';
 import CurrencyInput from '../CurrencyInput';
+import { swapBtnClick } from './events';
 
 const ExchangeCounter = () => {
   const dispatch = useDispatch();
@@ -48,7 +49,12 @@ const ExchangeCounter = () => {
           selectedOption={selectedCurToChange}
           currencyListCCY={currencyListCCY}
         />
-        <button type="button" className="btn-exchange-swap btn btn-dark">
+        <button
+          type="button"
+          className="btn-swap btn btn-dark"
+          onClick={(event) => swapBtnClick({ event })}
+          value="8644"
+        >
           &#8644;
         </button>
         <CurrencyInput

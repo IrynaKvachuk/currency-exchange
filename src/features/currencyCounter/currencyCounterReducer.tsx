@@ -3,7 +3,8 @@ import {
   CurrencyCounterTypes,
   CounterCurrency,
   SET_COUNTER_CURRENCY,
-  SET_COUNTER_CURRENCY_VALUE
+  SET_COUNTER_CURRENCY_VALUE,
+  SWAP_CURRENCIES
 } from './currencyCounterTypes';
 
 export type CurrencyCounterState = {
@@ -44,6 +45,10 @@ const currencyCounterReducer: Reducer<CurrencyCounterState, CurrencyCounterTypes
           value: newValue
         }
       };
+    }
+    case SWAP_CURRENCIES: {
+      const currencyToChange = state.currencyToChange;
+      return { ...state, currencyToChange: state.currencyToGet, currencyToGet: currencyToChange };
     }
     default:
       return state;

@@ -1,19 +1,19 @@
 import { Reducer } from 'redux';
 import {
   CurrencyCounterTypes,
-  CurrencyToChange,
-  CurrencyToGet,
-  SET_CURRENCY_TO_CHANGE,
-  SET_CURRENCY_TO_GET
+  CounterCurrency,
+  SET_COUNTER_CURRENCY,
+  SET_CURRENCY_VALUE_TO_CHANGE,
+  SET_CURRENCY_VALUE_TO_GET
 } from './currencyCounterTypes';
 
 export type CurrencyCounterState = {
-  currencyToChange: CurrencyToChange;
-  currencyToGet: CurrencyToGet;
+  currencyToChange: CounterCurrency;
+  currencyToGet: CounterCurrency;
 };
 
 const initialState: CurrencyCounterState = {
-  currencyToChange: { name: '', value: 0, buy: '', sale: '' },
+  currencyToChange: { name: 'UAH', value: 1, buy: '1', sale: '1' },
   currencyToGet: { name: '', value: 0, buy: '', sale: '' }
 };
 
@@ -22,15 +22,27 @@ const currencyCounterReducer: Reducer<CurrencyCounterState, CurrencyCounterTypes
   action
 ) => {
   switch (action.type) {
-    case SET_CURRENCY_TO_CHANGE:
+    case SET_COUNTER_CURRENCY: {
+      const curInputType = action.payload.currencyToChange.counterInputType;
+      const newCurrency = action.payload.currencyToChange.counterCurrency;
+
       return {
         ...state,
-        currencyToChange: { ...state.currencyToChange, ...action.payload.currencyToChange }
+        [curInputType]: {
+          ...newCurrency,
+          value: state[curInputType].value
+        }
       };
-    case SET_CURRENCY_TO_GET:
+    }
+    case SET_CURRENCY_VALUE_TO_CHANGE:
       return {
         ...state,
-        currencyToGet: { ...state.currencyToGet, ...action.payload.currencyToGet }
+        currencyToChange: { ...state.currencyToChange, value: action.payload.currencyValue }
+      };
+    case SET_CURRENCY_VALUE_TO_GET:
+      return {
+        ...state,
+        currencyToGet: { ...state.currencyToGet, value: action.payload.currencyValue }
       };
     default:
       return state;

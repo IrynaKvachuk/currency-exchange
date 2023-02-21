@@ -1,17 +1,22 @@
 import {
-  CurrencyToChange,
   CurrencyCounterTypes,
-  CurrencyToGet,
-  SET_CURRENCY_TO_CHANGE,
-  SET_CURRENCY_TO_GET
+  SET_COUNTER_CURRENCY,
+  SET_CURRENCY_VALUE_TO_CHANGE,
+  SET_CURRENCY_VALUE_TO_GET,
+  CurrencyToChange
 } from './currencyCounterTypes';
 
-export const setCurrencyToChange = (input: CurrencyToChange): CurrencyCounterTypes => ({
-  type: SET_CURRENCY_TO_CHANGE,
+export const setCounterCurrency = (input: CurrencyToChange): CurrencyCounterTypes => ({
+  type: SET_COUNTER_CURRENCY,
   payload: { currencyToChange: input }
 });
 
-export const setCurrencyToGet = (input: CurrencyToGet): CurrencyCounterTypes => ({
-  type: SET_CURRENCY_TO_GET,
-  payload: { currencyToGet: input }
+export const setCurrencyValueToChange = (input: number): CurrencyCounterTypes => ({
+  type: SET_CURRENCY_VALUE_TO_CHANGE,
+  payload: { currencyValue: input }
+});
+
+export const setCurrencyValueToGet = (input: number): CurrencyCounterTypes => ({
+  type: SET_CURRENCY_VALUE_TO_GET,
+  payload: { currencyValue: input }
 });

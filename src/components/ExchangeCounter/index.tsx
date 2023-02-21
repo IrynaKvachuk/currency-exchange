@@ -6,7 +6,10 @@ import {
   selectCurrencyToChange,
   selectCurrencyToGet
 } from '../../features/currencyCounter/currencyCounterSelects';
-import { selectCurrencyList } from '../../features/currencyList/currencyListSelects';
+import {
+  selectCurrencyList,
+  selectCurrencyListStatus
+} from '../../features/currencyList/currencyListSelects';
 import Container from '../../layout/Container';
 import CurrencyInput from '../CurrencyInput';
 import { swapBtnClick } from './events';
@@ -16,6 +19,7 @@ const ExchangeCounter = () => {
 
   const [currencyListCCY, setCurrencyListCCY] = useState<Array<string>>([]);
 
+  const currencyListStatus = useSelector(selectCurrencyListStatus);
   const currencyList = useSelector(selectCurrencyList);
   const selectedCurToChange = useSelector(selectCurrencyToChange);
   const selectedCurToGet = useSelector(selectCurrencyToGet);
@@ -42,28 +46,30 @@ const ExchangeCounter = () => {
 
   return (
     <Container>
-      <section className="exchange_counter">
-        <CurrencyInput
-          label="Change"
-          counterInput="currencyToChange"
-          selectedOption={selectedCurToChange}
-          currencyListCCY={currencyListCCY}
-        />
-        <button
-          type="button"
-          className="btn-swap btn btn-dark"
-          onClick={(event) => swapBtnClick({ event })}
-          value="8644"
-        >
-          &#8644;
-        </button>
-        <CurrencyInput
-          label="Get"
-          counterInput="currencyToGet"
-          selectedOption={selectedCurToGet}
-          currencyListCCY={currencyListCCY}
-        />
-      </section>
+      {currencyListStatus === 'success' && (
+        <section className="exchange_counter">
+          <CurrencyInput
+            label="Change"
+            counterInput="currencyToChange"
+            selectedOption={selectedCurToChange}
+            currencyListCCY={currencyListCCY}
+          />
+          <button
+            type="button"
+            className="exchange_btn btn-swap btn btn-dark"
+            onClick={(event) => swapBtnClick({ event })}
+            value="8644"
+          >
+            &#8644;
+          </button>
+          <CurrencyInput
+            label="Get"
+            counterInput="currencyToGet"
+            selectedOption={selectedCurToGet}
+            currencyListCCY={currencyListCCY}
+          />
+        </section>
+      )}
     </Container>
   );
 };

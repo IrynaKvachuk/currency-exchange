@@ -1,6 +1,4 @@
-import { useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { getCurrencyListRequest } from '../../features/currencyList/currencyListActions';
+import { useSelector } from 'react-redux';
 import {
   selectCurrencyList,
   selectCurrencyListErrorStatus,
@@ -10,22 +8,25 @@ import Container from '../../layout/Container';
 import ErrorMessage from '../ErrorMessage';
 import Loader from '../icons/Loader';
 import CurrencyTable from './CurrencyTable';
+import { useEffectOnce } from '../../hooks/UseEffectOnce';
+import { getCurrencyData } from './utils';
+import TopToolbar from './TopToolbar';
 
 const CurrencyList = () => {
   const currencyList = useSelector(selectCurrencyList);
   const currencyListStatus = useSelector(selectCurrencyListStatus);
   const currencyListErrorStatus = useSelector(selectCurrencyListErrorStatus);
-  const dispatch = useDispatch();
 
-  useEffect(() => {
-    dispatch(getCurrencyListRequest());
-  }, [dispatch]);
+  useEffectOnce(() => {
+    getCurrencyData();
+  });
 
   return (
-    <Container>
+    <Container classList="currency-list">
       {currencyListStatus === 'loading' && <Loader />}
+      {currencyListStatus === 'success' && <TopToolbar />}
       {currencyListStatus === 'success' && <CurrencyTable currencyList={currencyList} />}
-      {currencyListStatus === 'failed' && <ErrorMessage errorStatus={currencyListErrorStatus} />}
+      {currencyListStatus === 'failed' && <ErrorMessage errorData={currencyListErrorStatus} />}
     </Container>
   );
 };

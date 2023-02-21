@@ -48,10 +48,14 @@ const CurrencyTable: React.FC<Props> = (props: Props) => {
         })}
       </tbody>
       <tfoot>
-        <div className="error-validation">
-          {editTypeError ? typeErrorMessage : ''}
-          {editValueError ? valueErrorMessage : ''}
-        </div>
+        <tr>
+          <td colSpan={3}>
+            <div className="error-validation">
+              {editTypeError ? typeErrorMessage : ''}
+              {editValueError ? valueErrorMessage : ''}
+            </div>
+          </td>
+        </tr>
       </tfoot>
     </table>
   );

@@ -3,7 +3,7 @@ import {
   CounterCurrency,
   CounterInputType
 } from '../../features/currencyCounter/currencyCounterTypes';
-import { changeCurrency } from './utils';
+import { currencySelectChange } from './events';
 
 type Props = {
   counterInput: CounterInputType;
@@ -20,7 +20,7 @@ const CurrencyDropDown: React.FC<Props> = (props: Props) => {
         className="form-select"
         aria-label="Default select example"
         value={selectedOption.name}
-        onChange={(event) => changeCurrency({ event, counterInput })}
+        onChange={(event) => currencySelectChange({ event, counterInput })}
       >
         {currencyListCCY.map((ccy) => {
           return (

@@ -1,6 +1,5 @@
 export const SET_COUNTER_CURRENCY = 'SET_COUNTER_CURRENCY';
-export const SET_CURRENCY_VALUE_TO_CHANGE = 'SET_CURRENCY_TO_VALUE_CHANGE';
-export const SET_CURRENCY_VALUE_TO_GET = 'SET_CURRENCY_VALUE_TO_GET';
+export const SET_COUNTER_CURRENCY_VALUE = 'SET_COUNTER_CURRENCY_VALUE';
 
 export type CounterInputType = 'currencyToChange' | 'currencyToGet';
 
@@ -16,22 +15,19 @@ export type CurrencyToChange = {
   counterCurrency: CounterCurrency;
 };
 
+export type CurrencyValueToChange = {
+  counterInputType: CounterInputType;
+  value: number;
+};
+
 interface SetCounterCurrency {
   type: typeof SET_COUNTER_CURRENCY;
   payload: { currencyToChange: CurrencyToChange };
 }
 
-interface SetCurrencyValueToChange {
-  type: typeof SET_CURRENCY_VALUE_TO_CHANGE;
-  payload: { currencyValue: number };
+interface SetCounterCurrencyValue {
+  type: typeof SET_COUNTER_CURRENCY_VALUE;
+  payload: { currencyValueToChange: CurrencyValueToChange };
 }
 
-interface SetCurrencyValueToGet {
-  type: typeof SET_CURRENCY_VALUE_TO_GET;
-  payload: { currencyValue: number };
-}
-
-export type CurrencyCounterTypes =
-  | SetCounterCurrency
-  | SetCurrencyValueToChange
-  | SetCurrencyValueToGet;
+export type CurrencyCounterTypes = SetCounterCurrency | SetCounterCurrencyValue;

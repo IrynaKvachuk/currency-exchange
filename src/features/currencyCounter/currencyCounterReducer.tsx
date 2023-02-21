@@ -3,8 +3,7 @@ import {
   CurrencyCounterTypes,
   CounterCurrency,
   SET_COUNTER_CURRENCY,
-  SET_CURRENCY_VALUE_TO_CHANGE,
-  SET_CURRENCY_VALUE_TO_GET
+  SET_COUNTER_CURRENCY_VALUE
 } from './currencyCounterTypes';
 
 export type CurrencyCounterState = {
@@ -30,20 +29,22 @@ const currencyCounterReducer: Reducer<CurrencyCounterState, CurrencyCounterTypes
         ...state,
         [curInputType]: {
           ...newCurrency,
-          value: state[curInputType].value
+          value: newCurrency.value ?? state[curInputType].value
         }
       };
     }
-    case SET_CURRENCY_VALUE_TO_CHANGE:
+    case SET_COUNTER_CURRENCY_VALUE: {
+      const curInputType = action.payload.currencyValueToChange.counterInputType;
+      const newValue = action.payload.currencyValueToChange.value;
+
       return {
         ...state,
-        currencyToChange: { ...state.currencyToChange, value: action.payload.currencyValue }
+        [curInputType]: {
+          ...state[curInputType],
+          value: newValue
+        }
       };
-    case SET_CURRENCY_VALUE_TO_GET:
-      return {
-        ...state,
-        currencyToGet: { ...state.currencyToGet, value: action.payload.currencyValue }
-      };
+    }
     default:
       return state;
   }

@@ -21,6 +21,8 @@ export const setInitCurrencyValues = (props: SetInitCurrencyValues) => {
       counterCurrency: curToGet
     })
   );
+
+  return;
 };
 
 export const checkForChanges = (props: CheckForChanges) => {

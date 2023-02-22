@@ -1,0 +1,11 @@
+.exchange {
+  &_header {
+    height: 10rem;
+
+    &-logo {
+      margin-left: 1rem;
+      font-size: 2rem;
+      font-weight: bold;
+    }
+  }
+}

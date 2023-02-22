@@ -1,7 +1,7 @@
 {
   "name": "currency-exchange",
   "version": "0.1.0",
-  "private": true,
+  "private": false,
   "homepage": "https://irynakvachuk.github.io/currency-exchange",
   "proxy": "https://api.privatbank.ua",
   "dependencies": {

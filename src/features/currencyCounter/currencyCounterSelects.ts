@@ -1,10 +1,10 @@
 import { RootStateT } from '../../store/rootReducer';
 import { CounterCurrency } from './currencyCounterTypes';
 
-export const selectCurrencyToChangeValue = (state: RootStateT): number =>
+export const selectCurrencyToChangeValue = (state: RootStateT): string =>
   state.currencyCounter.currencyToChange.value;
 
-export const selectCurrencyToGetValue = (state: RootStateT): number =>
+export const selectCurrencyToGetValue = (state: RootStateT): string =>
   state.currencyCounter.currencyToGet.value;
 
 export const selectCurrencyToChange = (state: RootStateT): CounterCurrency =>

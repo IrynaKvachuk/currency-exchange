@@ -14,8 +14,8 @@ export const currencySelectChange = (props: CurrencySelectChange) => {
   const { event, counterInput } = props;
   const selectEl = event.target as HTMLSelectElement;
   const inputEl = selectEl
-    .closest('.input-group')
-    ?.querySelector('.floating-input') as HTMLInputElement;
+    .closest('.exchange_counter')
+    ?.querySelector('#currencyToChange') as HTMLInputElement;
   const selectedValue = selectEl.value;
   const currencyList = store.getState().currencyList.data;
   const currencyListWithBase = [
@@ -31,8 +31,8 @@ export const currencySelectChange = (props: CurrencySelectChange) => {
   store.dispatch(
     setCounterCurrency({
       counterInputType: counterInput,
-      counterCurrency: { name: ccy, value: 0, sale, buy }
+      counterCurrency: { name: ccy, value: '', sale, buy }
     })
   );
-  changeCurrencyValue({ counterInput, inputEl });
+  changeCurrencyValue({ counterInput: 'currencyToChange', inputEl });
 };

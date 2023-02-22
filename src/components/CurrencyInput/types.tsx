@@ -22,12 +22,12 @@ export type ChangeCurrencyValue = {
 
 export type CalculateCurrencyValue = {
   counterInput: CounterInputType;
-  amount: number;
+  amount: string;
   stateToChange: CounterCurrency;
   stateToGet: CounterCurrency;
 };
 
 export type GetOppositeValue = {
   counterInput: CounterInputType;
-  amount: number;
+  amount: string;
 };

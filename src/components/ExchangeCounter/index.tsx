@@ -1,48 +1,41 @@
 import { useEffect, useState } from 'react';
-import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
-import { setCounterCurrency } from '../../features/currencyCounter/currencyCounterActions';
 import {
   selectCurrencyToChange,
   selectCurrencyToGet
 } from '../../features/currencyCounter/currencyCounterSelects';
 import {
+  selectChangedCurrency,
   selectCurrencyList,
   selectCurrencyListStatus
 } from '../../features/currencyList/currencyListSelects';
 import Container from '../../layout/Container';
 import CurrencyInput from '../CurrencyInput';
 import { swapBtnClick } from './events';
+import { checkForChanges, setInitCurrencyValues } from './utils';
 
 const ExchangeCounter = () => {
-  const dispatch = useDispatch();
-
   const [currencyListCCY, setCurrencyListCCY] = useState<Array<string>>([]);
 
   const currencyListStatus = useSelector(selectCurrencyListStatus);
   const currencyList = useSelector(selectCurrencyList);
   const selectedCurToChange = useSelector(selectCurrencyToChange);
   const selectedCurToGet = useSelector(selectCurrencyToGet);
+  const changedCurrency = useSelector(selectChangedCurrency);
 
   useEffect(() => {
-    if (!currencyList.length) return;
-    const { base_ccy, ccy, buy, sale } = currencyList[0];
+    if (!currencyList.length || currencyListCCY.length) return;
+    const { base_ccy } = currencyList[0];
     const ccyList = currencyList.map((currency) => currency.ccy);
-    const curToGet = {
-      name: ccy,
-      buy,
-      sale,
-      value: 1 / Number(sale)
-    };
 
+    setInitCurrencyValues({ selectedCurToGet, firstForeignCurrency: currencyList[0] });
     setCurrencyListCCY([base_ccy, ...ccyList]);
-    dispatch(
-      setCounterCurrency({
-        counterInputType: 'currencyToGet',
-        counterCurrency: curToGet
-      })
-    );
   }, [currencyList]);
+
+  // convert currency if value in table was changed
+  useEffect(() => {
+    checkForChanges({ changedCurrency, selectedCurToChange, selectedCurToGet });
+  }, [changedCurrency]);
 
   return (
     <Container>

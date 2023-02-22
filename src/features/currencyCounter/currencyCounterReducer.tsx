@@ -13,8 +13,8 @@ export type CurrencyCounterState = {
 };
 
 const initialState: CurrencyCounterState = {
-  currencyToChange: { name: 'UAH', value: 1, buy: '1', sale: '1' },
-  currencyToGet: { name: '', value: 0, buy: '', sale: '' }
+  currencyToChange: { name: 'UAH', value: '1.0000', buy: '1', sale: '1' },
+  currencyToGet: { name: '', value: '0', buy: '', sale: '' }
 };
 
 const currencyCounterReducer: Reducer<CurrencyCounterState, CurrencyCounterTypes> = (
@@ -48,7 +48,11 @@ const currencyCounterReducer: Reducer<CurrencyCounterState, CurrencyCounterTypes
     }
     case SWAP_CURRENCIES: {
       const currencyToChange = state.currencyToChange;
-      return { ...state, currencyToChange: state.currencyToGet, currencyToGet: currencyToChange };
+      return {
+        ...state,
+        currencyToChange: { ...state.currencyToGet, value: currencyToChange.value },
+        currencyToGet: currencyToChange
+      };
     }
     default:
       return state;

@@ -6,7 +6,7 @@ export type CounterInputType = 'currencyToChange' | 'currencyToGet';
 
 export type CounterCurrency = {
   name: string;
-  value: number;
+  value: string;
   buy: string;
   sale: string;
 };
@@ -18,7 +18,7 @@ export type CurrencyToChange = {
 
 export type CurrencyValueToChange = {
   counterInputType: CounterInputType;
-  value: number;
+  value: string;
 };
 
 interface SetCounterCurrency {

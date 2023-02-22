@@ -1,6 +1,6 @@
 import { RootStateT } from '../../store/rootReducer';
 import { ErrorData, LoadingStatus } from '../_common/types';
-import { Currency } from '../currency/currencyTypes';
+import { ChangedCurrency, Currency } from '../currency/currencyTypes';
 
 export const selectCurrencyList = (state: RootStateT): Array<Currency> => state.currencyList.data;
 
@@ -15,6 +15,9 @@ export const selectCurrencyListErrorStatus = (state: RootStateT): ErrorData =>
 
 export const selectCurrencyListFocusedCell = (state: RootStateT): string =>
   state.currencyList.focusedCell;
+
+export const selectChangedCurrency = (state: RootStateT): ChangedCurrency | null =>
+  state.currencyList.changedCurrency;
 
 export const selectEditTypeError = (state: RootStateT): boolean => state.currencyList.editTypeError;
 

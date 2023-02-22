@@ -22,6 +22,7 @@ const CurrencyInput: React.FC<Props> = (props: Props) => {
           type="text"
           className="floating-input form-control"
           id={counterInput}
+          aria-label={label}
           name="floatingInput"
           pattern="^\d*(\.\d{0,5})?$"
           placeholder={label}

@@ -5,7 +5,7 @@ import { selectCurrencyListFocusedCell } from '../../../features/currencyList/cu
 import CellEdit from './CellEdit';
 import { editClick } from './utils';
 
-type Props = {
+export type CellProps = {
   value: string;
   id: string;
   ccy: string;
@@ -13,7 +13,7 @@ type Props = {
   onChange: (newValue: string) => void;
 };
 
-const Cell: React.FC<Props> = (props: Props) => {
+const Cell: React.FC<CellProps> = (props: CellProps) => {
   const { value = '', id, ccy, exchangeType, onChange } = props;
 
   const [text, setText] = useState<string>(value);
@@ -28,7 +28,7 @@ const Cell: React.FC<Props> = (props: Props) => {
     return CellEdit({ initText: value, text, ccy, exchangeType, setText, onChange });
   if (focusedCell !== id)
     return (
-      <div onClick={() => editClick({ id, initText: value, setText })}>
+      <div data-testid="table-cell" onClick={() => editClick({ id, initText: value, setText })}>
         {text.substring(0, text.indexOf('.') + 3)}
       </div>
     );

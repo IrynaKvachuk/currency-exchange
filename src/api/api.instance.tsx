@@ -2,7 +2,7 @@ import axios from 'axios';
 import { BASE_URL } from './api.config';
 
 const instance = axios.create({
-  baseURL: BASE_URL
+  baseURL: 'http://test.test.test'
 });
 
 const sleepRequest = (milliseconds: number, originalRequest: string) => {

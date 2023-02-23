@@ -9,7 +9,7 @@ const rootElement = document.getElementById('root')!;
 const root = createRoot(rootElement);
 
 root.render(
-  <HashRouter basename="/">
+  <HashRouter basename="/currency-exchange/">
     <Provider store={store}>
       <React.StrictMode>
         <App />

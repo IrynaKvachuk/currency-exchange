@@ -1,4 +1,3 @@
-import { Link } from 'react-router-dom';
 import { ErrorData } from '../../features/_common/types';
 
 type Props = {
@@ -13,9 +12,7 @@ const Error429: React.FC<Props> = (props: Props) => {
     <section className="error-429">
       <h2 className="error-header">{statusText}</h2>
       <span>{data}</span>
-      <span>
-        Try to <Link to="/">reload page</Link>
-      </span>
+      <span>Try to reload page.</span>
     </section>
   );
 };
